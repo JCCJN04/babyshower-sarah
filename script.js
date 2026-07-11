@@ -40,23 +40,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (bgMusic && musicBtn) {
-        // Autoplay on first user gesture (browsers require interaction)
-        const startMusic = () => {
-            bgMusic.play().then(() => {
-                setPlaying(true);
-            }).catch(() => {});
-            document.removeEventListener('click', startMusic);
-            document.removeEventListener('touchstart', startMusic);
+        // Audio starts muted via autoplay attribute (browsers allow muted autoplay)
+        // Unmute on first interaction with the page
+        const unmute = () => {
+            bgMusic.muted = false;
+            if (bgMusic.paused) {
+                bgMusic.play().catch(() => {});
+            }
+            setPlaying(true);
+            document.removeEventListener('touchstart', unmute, true);
+            document.removeEventListener('pointerdown', unmute, true);
+            document.removeEventListener('keydown', unmute, true);
+            document.removeEventListener('scroll', unmute, true);
         };
-        document.addEventListener('click', startMusic);
-        document.addEventListener('touchstart', startMusic);
-
-        // Try immediate autoplay (works in some browsers/contexts)
-        bgMusic.play().then(() => setPlaying(true)).catch(() => {});
+        // Use capture phase so it fires before any child handler
+        document.addEventListener('touchstart', unmute, true);
+        document.addEventListener('pointerdown', unmute, true);
+        document.addEventListener('keydown', unmute, true);
+        document.addEventListener('scroll', unmute, true);
 
         musicBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (bgMusic.paused) {
+                bgMusic.muted = false;
                 bgMusic.play();
                 setPlaying(true);
             } else {
