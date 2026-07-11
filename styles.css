@@ -1,0 +1,330 @@
+:root {
+    --bg-color: #f6f3f0;
+    --card-bg: rgba(255, 255, 255, 0.85); /* Glassmorphism base */
+    --text-primary: #3b3331;
+    --text-secondary: #706563;
+    --gold: linear-gradient(135deg, #c5a059 0%, #dfc282 25%, #b38b42 50%, #dfc282 75%, #c5a059 100%);
+    --gold-solid: #c5a059;
+    --rose-dust: #d1b4b3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-color);
+    background-image: url('https://babyshower-sarah.vercel.app/flowers_arch.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Soften the background image for a more ethereal feel */
+    background-blend-mode: overlay;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 30px 15px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Luxury atmospheric overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, rgba(246,243,240,0.6) 0%, rgba(246,243,240,0.95) 100%);
+    z-index: -1;
+}
+
+.invitation-container {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    z-index: 1;
+}
+
+/* Premium Arch Card with Glassmorphism */
+.arch-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 250px 250px 0 0;
+    padding: 10px;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(138, 114, 114, 0.15),
+                inset 0 0 0 1px rgba(255,255,255,0.7);
+    overflow: hidden;
+}
+
+/* Inner border for elegant framing */
+.arch-border-inner {
+    border: 1px solid var(--rose-dust);
+    border-radius: 240px 240px 0 0;
+    padding: 60px 30px 50px;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+}
+
+.floral-corner {
+    position: absolute;
+    width: 280px;
+    opacity: 0.85;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.floral-corner.top-left {
+    top: -60px;
+    left: -70px;
+    transform: rotate(20deg);
+}
+
+.floral-corner.bottom-right {
+    bottom: -70px;
+    right: -70px;
+    transform: rotate(190deg);
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+/* Typography Enhancements */
+.pre-title, .honoring, .time, .rsvp-title, .venue {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.main-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin: 20px 0 10px;
+}
+
+.theme-title {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.theme-title .baby {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    display: block;
+}
+
+.theme-title .in-bloom {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 4.5rem;
+    line-height: 0.6;
+    background: var(--gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    padding: 10px 0;
+    filter: drop-shadow(0 2px 4px rgba(197, 160, 89, 0.2));
+}
+
+.name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+}
+
+/* Delicate Divider */
+.divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 30px;
+    opacity: 0.6;
+}
+
+/* Date & Time */
+.date-time {
+    margin-bottom: 30px;
+}
+
+.date-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.gold-dot {
+    color: var(--gold-solid);
+    font-size: 0.8rem;
+    margin: 0 5px;
+}
+
+/* Location */
+.venue {
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+}
+
+.address {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+/* Luxury Buttons */
+.action-btn {
+    display: inline-block;
+    position: relative;
+    padding: 1px; /* Border thickness */
+    background: var(--gold);
+    border-radius: 30px;
+    text-decoration: none;
+    margin-bottom: 25px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.action-btn span {
+    display: block;
+    background: var(--bg-color);
+    color: var(--text-primary);
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: all 0.4s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+}
+
+.action-btn:hover span {
+    background: transparent;
+    color: white;
+}
+
+/* Gifts Section */
+.gifts-section {
+    margin: 20px 0;
+}
+
+.gifts-text {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 5px;
+    font-weight: 300;
+}
+
+.gifts-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+/* RSVP */
+.rsvp-section {
+    margin-top: 40px;
+}
+
+.rsvp-title {
+    margin-bottom: 10px;
+}
+
+.rsvp-text {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+.gold-text {
+    color: var(--gold-solid);
+    font-weight: 500;
+}
+
+/* Refined Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.15s; }
+.delay-2 { transition-delay: 0.3s; }
+.delay-3 { transition-delay: 0.45s; }
+.delay-4 { transition-delay: 0.6s; }
+
+/* Subtle light particles instead of leaves */
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+}
+
+.p1 { width: 8px; height: 8px; top: 20%; left: 10%; animation: glimmer 4s infinite 0s; }
+.p2 { width: 12px; height: 12px; top: 60%; right: 15%; animation: glimmer 5s infinite 1s; }
+.p3 { width: 6px; height: 6px; bottom: 30%; left: 20%; animation: glimmer 3.5s infinite 2s; }
+.p4 { width: 10px; height: 10px; top: 15%; right: 25%; animation: glimmer 6s infinite 0.5s; }
+
+@keyframes glimmer {
+    0% { opacity: 0; transform: scale(0.5) translateY(0); }
+    50% { opacity: 0.6; transform: scale(1.2) translateY(-10px); }
+    100% { opacity: 0; transform: scale(0.5) translateY(-20px); }
+}
+
+@media (max-width: 400px) {
+    .arch-card {
+        border-radius: 200px 200px 0 0;
+        padding: 8px;
+    }
+    .arch-border-inner {
+        border-radius: 190px 190px 0 0;
+        padding: 50px 20px 40px;
+    }
+    .main-title { font-size: 1.8rem; }
+    .theme-title .in-bloom { font-size: 3.8rem; }
+    .name { font-size: 1.7rem; }
+}
