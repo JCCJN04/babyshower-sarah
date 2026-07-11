@@ -27,4 +27,42 @@ document.addEventListener('DOMContentLoaded', () => {
             headerSection.classList.add('visible');
         }
     }, 100);
+
+    // Music Player Logic
+    const bgMusic = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-btn');
+    const iconPlay = document.getElementById('icon-play');
+    const iconPause = document.getElementById('icon-pause');
+
+    function setPlaying(playing) {
+        iconPlay.style.display = playing ? 'none' : 'block';
+        iconPause.style.display = playing ? 'block' : 'none';
+    }
+
+    if (bgMusic && musicBtn) {
+        // Autoplay on first user gesture (browsers require interaction)
+        const startMusic = () => {
+            bgMusic.play().then(() => {
+                setPlaying(true);
+            }).catch(() => {});
+            document.removeEventListener('click', startMusic);
+            document.removeEventListener('touchstart', startMusic);
+        };
+        document.addEventListener('click', startMusic);
+        document.addEventListener('touchstart', startMusic);
+
+        // Try immediate autoplay (works in some browsers/contexts)
+        bgMusic.play().then(() => setPlaying(true)).catch(() => {});
+
+        musicBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (bgMusic.paused) {
+                bgMusic.play();
+                setPlaying(true);
+            } else {
+                bgMusic.pause();
+                setPlaying(false);
+            }
+        });
+    }
 });

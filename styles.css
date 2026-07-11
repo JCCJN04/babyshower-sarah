@@ -17,7 +17,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--bg-color);
-    background-image: url('https://babyshower-sarah-iota.vercel.app/flowers_arch.png');
+    background-image: url('flowers_arch.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -260,6 +260,35 @@ body::before {
     margin-top: 40px;
 }
 
+#music-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 100;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-solid);
+    background: var(--bg-color);
+    color: var(--gold-solid);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(197,160,89,0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#music-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 18px rgba(197,160,89,0.35);
+}
+
+.tally-embed-wrapper {
+    margin-top: 20px;
+    width: 100%;
+}
+
 .rsvp-title {
     margin-bottom: 10px;
 }
@@ -328,3 +357,4 @@ body::before {
     .theme-title .in-bloom { font-size: 3.8rem; }
     .name { font-size: 1.7rem; }
 }
+
