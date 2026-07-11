@@ -40,31 +40,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (bgMusic && musicBtn) {
-        // Audio starts muted via autoplay attribute (browsers allow muted autoplay)
-        // Unmute on first interaction with the page
-        const unmute = () => {
-            bgMusic.muted = false;
-            if (bgMusic.paused) {
-                bgMusic.play().catch(() => {});
-            }
-            setPlaying(true);
-            document.removeEventListener('touchstart', unmute, true);
-            document.removeEventListener('pointerdown', unmute, true);
-            document.removeEventListener('keydown', unmute, true);
-            document.removeEventListener('scroll', unmute, true);
+        let musicStarted = false;
+
+        const startMusic = () => {
+            if (musicStarted) return;
+            musicStarted = true;
+            bgMusic.play().then(() => setPlaying(true)).catch(() => {});
         };
-        // Use capture phase so it fires before any child handler
-        document.addEventListener('touchstart', unmute, true);
-        document.addEventListener('pointerdown', unmute, true);
-        document.addEventListener('keydown', unmute, true);
-        document.addEventListener('scroll', unmute, true);
+
+        // Capture phase on document catches interactions before any child (except iframes)
+        document.addEventListener('touchstart', startMusic, { capture: true, once: true });
+        document.addEventListener('click', startMusic, { capture: true, once: true });
+
+        // Also listen directly on the arch-card (above the Tally iframe)
+        // so any tap on the invitation content triggers music
+        const archCard = document.querySelector('.arch-card');
+        if (archCard) {
+            archCard.addEventListener('touchstart', startMusic, { once: true });
+            archCard.addEventListener('click', startMusic, { once: true });
+        }
 
         musicBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (bgMusic.paused) {
-                bgMusic.muted = false;
-                bgMusic.play();
-                setPlaying(true);
+                bgMusic.play().then(() => setPlaying(true)).catch(() => {});
             } else {
                 bgMusic.pause();
                 setPlaying(false);
