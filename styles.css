@@ -286,6 +286,50 @@ body::before {
     box-shadow: 0 6px 18px rgba(197,160,89,0.35);
 }
 
+/* Countdown Timer */
+.countdown-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin: 22px 0 8px;
+}
+
+.countdown-unit {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+}
+
+.countdown-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    line-height: 1;
+    background: var(--gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+.countdown-label {
+    font-size: 0.55rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.countdown-sep {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--gold-solid);
+    opacity: 0.5;
+    line-height: 1;
+}
+
 .tally-embed-wrapper {
     margin-top: 20px;
     width: 100%;
